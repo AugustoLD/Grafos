@@ -7,6 +7,7 @@
 
 #include <QPainter>
 #include <QPaintEvent>
+#include "depthfirstsearch.h"
 
 namespace Ui {
 class MainWindow;
@@ -27,10 +28,13 @@ public slots:
 
 private slots:
     void on_actionLoad_triggered();
+    void init();
+    void paint();
 
 private:
     Ui::MainWindow *ui;
     Grafo *grafo, *tmp;
+    DepthFirstSearch *dfs;
 
 protected:
     virtual void paintEvent(QPaintEvent *);

@@ -11,12 +11,14 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    depthfirstsearch.cpp
 
 HEADERS  += mainwindow.h \
     aresta.h \
     grafo.h \
     vertice.h \
-    fila.h
+    fila.h \
+    depthfirstsearch.h
 
 FORMS    += mainwindow.ui

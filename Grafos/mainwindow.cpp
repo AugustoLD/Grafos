@@ -6,22 +6,26 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <iostream>
+
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow) {
 
     ui->setupUi(this);
-    this->ui->toolBar->addWidget( this->ui->labelInicial );
-    this->ui->toolBar->addWidget( this->ui->cbOrigem );
-    this->ui->statusBar->addWidget( this->ui->labelFinal  );
-    this->ui->statusBar->addWidget( this->ui->cbFinal );
-    this->ui->statusBar->addWidget( this->ui->textEdit );
-    this->ui->statusBar->addWidget( this->ui->pushButton );
+    this->ui->toolBar->addWidget(this->ui->labelInicial);
+    this->ui->toolBar->addWidget(this->ui->cbOrigem);
+    this->ui->statusBar->addWidget(this->ui->labelFinal);
+    this->ui->statusBar->addWidget(this->ui->cbFinal);
+    this->ui->statusBar->addWidget(this->ui->textEdit);
+    this->ui->statusBar->addWidget(this->ui->pushButton);
 
     QMainWindow::paintEvent(new QPaintEvent(this->geometry()));
     this->grafo=this->tmp=NULL;
     connect( this, SIGNAL (mostrar(Grafo * )), this, SLOT(mostrarGrafo(Grafo*)) );
+    connect(ui->pushButton, SIGNAL(clicked()), SLOT(init()));
 }
 
 void MainWindow::paintEvent(QPaintEvent *) {
@@ -51,7 +55,7 @@ void MainWindow::paintEvent(QPaintEvent *) {
     for (int i=0; i<n; i++) {
         v=vertice[i];
         painter.setBrush ( v->getCor() );
-        painter.setPen( (v->getCor()==Qt::white)? Qt::black : Qt::white );
+        painter.setPen((v->getCor()==Qt::black)? Qt::white : Qt::black);
         painter.drawEllipse( v->getX()-20,  v->getY()-20, 40, 40 );
         QRect r1 ( v->getX()-4,  v->getY()-8, v->getX()+4,  v->getY()+8 );
         painter.drawText( r1, v->getNome() );
@@ -130,6 +134,17 @@ void MainWindow::on_actionLoad_triggered() {
 
         emit mostrar ( grafo );
     }
+}
+
+void MainWindow::init() {
+    dfs = new DepthFirstSearch();
+    dfs->setGrafo(grafo);
+    dfs->start();
+    connect(dfs, SIGNAL(colorChanged()), SLOT(paint()));
+}
+
+void MainWindow::paint() {
+    update();
 }
 
 MainWindow::~MainWindow() {

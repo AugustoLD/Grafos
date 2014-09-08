@@ -32,12 +32,16 @@ public:
     int     getX ()                      { return this->x;    }
     int     getY ()                      { return this->y;    }
     QColor  getCor ()                    { return this->cor;  }
+    void setCor(QColor cor)              { this->cor = cor;   }
+    void setPai(Vertice *pai)            { this->pai = pai;   }
+    void setTi(int ti)                   { this->ti = ti;     }
+    void setTo(int to)                   { this->to = to;     }
 
     ~Vertice() {
         qDebug() << "Excluindo vertice " << nome;
         if (this->aresta!=NULL)
             delete this->aresta;
-    };
+    }
 
 protected:
     int id; // Index do vértice no vetor
@@ -48,6 +52,7 @@ protected:
     int n_a; // número de arestas
     QColor cor; // cor do vértice
     Aresta *aresta;
+    Vertice *pai;
 
     int x;
     int y;
