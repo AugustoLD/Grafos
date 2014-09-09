@@ -1,7 +1,6 @@
 #include "depthfirstsearch.h"
 #include <iostream>
 
-
 void DepthFirstSearch::dfs() {
     Vertice **V = g->getVertice();
     int n = g->getVerticeCount();
@@ -13,10 +12,7 @@ void DepthFirstSearch::dfs() {
         V[i]->setCor(Qt::white);
     }
     tempo = 0;
-    for(int i = initial; i < n; i++) {
-        if(achou) {
-            break;
-        }
+    for(int i = 0; i < n; i++) {
         if(V[i]->getCor() == Qt::white) {
             visit(V[i]);
         }
@@ -29,29 +25,18 @@ void DepthFirstSearch::visit(Vertice *v) {
     emit colorChanged();
     sleep(1);
     v->setTi(tempo++);
-    if(v->getNome() == final) {
-        achou = true;
-        v->setTo(tempo++);
-        v->setCor(Qt::black);
-        emit colorChanged();
-        sleep(1);
-    } else {
-        for(a = v->getAresta(); a != NULL && !achou; a = a->getNext()) {
-            va = g->getVertice()[a->getIdV2()];
-            std::cout << v->getNome().toStdString() << ' ' << va->getNome().toStdString() << std::endl;
-            std::cout << va->getNome().toStdString() << ' ' << final.toStdString() << std::endl;
-            std::cout << (va->getNome() == final) << std::endl;
-
-            if(va->getCor() == Qt::white) {
-                va->setPai(v);
-                visit(va);
-            }
+    for(a = v->getAresta(); a != NULL; a = a->getNext()) {
+        va = g->getVertice()[a->getIdV2()];
+        std::cout << v->getNome().toStdString() << ' ' << va->getNome().toStdString() << std::endl;
+        std::cout << va->getNome().toStdString() << ' ' << final.toStdString() << std::endl;
+        std::cout << (va->getNome() == final) << std::endl;
+        if(va->getCor() == Qt::white) {
+            va->setPai(v);
+            visit(va);
         }
     }
-    if(!achou) {
-        v->setTo(tempo++);
-        v->setCor(Qt::black);
-        emit colorChanged();
-        sleep(1);
-    }
+    v->setTo(tempo++);
+    v->setCor(Qt::black);
+    emit colorChanged();
+    sleep(1);
 }

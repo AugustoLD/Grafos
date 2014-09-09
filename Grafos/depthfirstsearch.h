@@ -13,7 +13,6 @@ public:
         this->g = g;
         this->initial = initial;
         this->final = final.toUpper();
-        achou = false;
     }
 
     void run() {
@@ -21,7 +20,6 @@ public:
     }
 
 private:
-    bool achou;
     int tempo;
     int initial;
     QString final;

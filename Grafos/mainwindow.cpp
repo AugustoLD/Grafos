@@ -15,17 +15,21 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow) {
 
     ui->setupUi(this);
-    this->ui->toolBar->addWidget(this->ui->labelInicial);
-    this->ui->toolBar->addWidget(this->ui->cbOrigem);
-    this->ui->statusBar->addWidget(this->ui->labelFinal);
-    this->ui->statusBar->addWidget(this->ui->cbFinal);
+    this->ui->toolBar->addWidget(this->ui->algorithmLabel);
+    this->ui->toolBar->addWidget(this->ui->algorithmComboBox);
+    for(int i = 0; i < 10; i++) this->ui->toolBar->addSeparator();
+    this->ui->toolBar->addWidget(this->ui->startButton);
+    this->ui->statusBar->addWidget(this->ui->frame);
     this->ui->statusBar->addWidget(this->ui->textEdit);
-    this->ui->statusBar->addWidget(this->ui->pushButton);
+    this->ui->statusBar->addWidget(this->ui->pathButton);
+
+    this->ui->algorithmComboBox->addItem("Depth First Search");
+    this->ui->algorithmComboBox->addItem("Breadth First Search");
 
     QMainWindow::paintEvent(new QPaintEvent(this->geometry()));
     this->grafo=this->tmp=NULL;
     connect( this, SIGNAL (mostrar(Grafo * )), this, SLOT(mostrarGrafo(Grafo*)) );
-    connect(ui->pushButton, SIGNAL(clicked()), SLOT(init()));
+    connect(ui->startButton, SIGNAL(clicked()), SLOT(init()));
 }
 
 void MainWindow::paintEvent(QPaintEvent *) {
@@ -89,7 +93,7 @@ void MainWindow::on_actionLoad_triggered() {
 
         if (grafo!=NULL) delete grafo;
         line = in.readLine();     // número de vértices
-        grafo = new Grafo ( line.toInt(), this );
+        grafo = new Grafo(line.toInt(), this);
 
         ui->cbOrigem->clear();
         ui->cbFinal->clear();
@@ -137,14 +141,22 @@ void MainWindow::on_actionLoad_triggered() {
 }
 
 void MainWindow::init() {
-    /*dfs = new DepthFirstSearch();
-    dfs->setParameters(grafo, ui->cbOrigem->currentIndex(), ui->cbFinal->currentText());
-    dfs->start();
-    connect(dfs, SIGNAL(colorChanged()), SLOT(paint()));*/
-    bfs = new BreadthFirstSearch();
-    bfs->setGrafo(grafo);
-    bfs->start();
-    connect(bfs, SIGNAL(colorChanged()), SLOT(paint()));
+    int selectedAlgorithm = this->ui->algorithmComboBox->currentIndex();
+
+    switch (selectedAlgorithm) {
+    case 0:
+        dfs = new DepthFirstSearch();
+        dfs->setParameters(grafo, ui->cbOrigem->currentIndex(), ui->cbFinal->currentText());
+        dfs->start();
+        connect(dfs, SIGNAL(colorChanged()), SLOT(paint()));
+        break;
+    case 1:
+        bfs = new BreadthFirstSearch();
+        bfs->setGrafo(grafo);
+        bfs->start();
+        connect(bfs, SIGNAL(colorChanged()), SLOT(paint()));
+        break;
+    }
 }
 
 void MainWindow::paint() {

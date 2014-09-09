@@ -2,6 +2,7 @@
 #define BREADTHFIRSTSEARCH_H
 
 #include <QThread>
+#include <QList>
 #include "grafo.h"
 #include "vertice.h"
 #include "fila.h"
@@ -19,7 +20,6 @@ public:
 private:
     int tempo;
     Grafo *g;
-    Fila *f;
     void bfs();
 
 signals:
