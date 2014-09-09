@@ -43,6 +43,8 @@ public:
         return true;
     }
 
+    Aresta *getAresta()        { return this->aresta; }
+
     Vertice **getVertice ()    { return this->vertice; }
     int     getVerticeCount()  { return this->size; }
 

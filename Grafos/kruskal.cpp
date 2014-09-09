@@ -1,22 +1,33 @@
-/*void kruskal(Aresta *a){
-       VKruskal = new Vertice *[n_vertices];
-       for(int i=0;i<n_vertices;i++){
-           VKruskal[i] = new Vertice(i,Vertice[i]->getNome(),Vertice[i]->getX(),Vertice[i]->getY());
-       }
+#include "kruskal.h"
+#include "aresta.h"
 
-       int na = 0;
-       while((na-1 < n_vertices) && (a != null)){
-           h = a;
-           a = a->getNext();
-           V1 = VKruskal[a->getIdV1()];
-           V2 = VKruskal[a->getIdV2()];
-           if(!find(V1,V2)){
-               V1->addAresta(a->getIdV1(),a->getIdV2(),a->getW());
-               V2->addAresta(a->getIdV2(),a->getIdV1(),a->getW());
-               UNIAO(V1,V2); //usa split se usar string, lista...
-               na++;
-           }
-           a = a->getNext();
-       }
-   }
-*/
+void Kruskal::kruskal() {
+    Aresta *a = g->getAresta();
+    Vertice *v1, *v2;
+    vKruskal = new Vertice *[g->getVerticeCount()];
+
+    for(int i=0; i < g->getVerticeCount(); i++){
+        vKruskal[i] = new Vertice(i, g->getVertice()[i]->getNome(),
+                                  g->getVertice()[i]->getX(),
+                                  g->getVertice()[i]->getY());
+    }
+
+    int n_a = 0;
+    while((n_a-1 < g->getVerticeCount()) && (a != NULL)){
+        v1 = vKruskal[a->getIdV1()];
+        v2 = vKruskal[a->getIdV2()];
+        if(!find(v1,v2)) {
+            v1->add(a->getIdV1(), a->getIdV2(), a->getW());
+            v2->add(a->getIdV2(), a->getIdV1(), a->getW());
+            //join(v1,v2); //usa split se usar string, lista...
+            n_a++;
+        }
+        a = a->getNext();
+    }
+}
+
+bool Kruskal::find(Vertice *v1, Vertice *v2) {
+    for(int i = 0; i < g->getVerticeCount(); i++) {
+
+    }
+}

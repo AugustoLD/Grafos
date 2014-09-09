@@ -31,6 +31,7 @@ private slots:
     void on_actionLoad_triggered();
     void init();
     void paint();
+    void freeButtons();
 
 private:
     Ui::MainWindow *ui;

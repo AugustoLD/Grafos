@@ -28,6 +28,7 @@ HEADERS  += mainwindow.h \
     prim.h \
     lista.h \
     no.h \
-    breadthfirstsearch.h
+    breadthfirstsearch.h \
+    kruskal.h
 
 FORMS    += mainwindow.ui

@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->ui->toolBar->addWidget(this->ui->algorithmLabel);
     this->ui->toolBar->addWidget(this->ui->algorithmComboBox);
-    for(int i = 0; i < 10; i++) this->ui->toolBar->addSeparator();
+    for(int i = 0; i < 23; i++) this->ui->toolBar->addSeparator();
     this->ui->toolBar->addWidget(this->ui->startButton);
     this->ui->statusBar->addWidget(this->ui->frame);
     this->ui->statusBar->addWidget(this->ui->textEdit);
@@ -137,11 +137,14 @@ void MainWindow::on_actionLoad_triggered() {
         file.close();
 
         emit mostrar ( grafo );
+        ui->startButton->setDisabled(false);
     }
 }
 
 void MainWindow::init() {
     int selectedAlgorithm = this->ui->algorithmComboBox->currentIndex();
+    this->ui->startButton->setDisabled(true);
+    this->ui->pathButton->setDisabled(true);
 
     switch (selectedAlgorithm) {
     case 0:
@@ -149,15 +152,24 @@ void MainWindow::init() {
         dfs->setParameters(grafo, ui->cbOrigem->currentIndex(), ui->cbFinal->currentText());
         dfs->start();
         connect(dfs, SIGNAL(colorChanged()), SLOT(paint()));
+        connect(dfs, SIGNAL(finished()), SLOT(freeButtons()));
         break;
     case 1:
         bfs = new BreadthFirstSearch();
         bfs->setGrafo(grafo);
         bfs->start();
         connect(bfs, SIGNAL(colorChanged()), SLOT(paint()));
+        connect(bfs, SIGNAL(finished()), SLOT(freeButtons()));
         break;
     }
 }
+
+void MainWindow::freeButtons()
+{
+    this->ui->startButton->setDisabled(false);
+    this->ui->pathButton->setDisabled(false);
+}
+
 
 void MainWindow::paint() {
     update();

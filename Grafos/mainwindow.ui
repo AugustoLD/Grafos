@@ -40,6 +40,9 @@
     </property>
    </widget>
    <widget class="QPushButton" name="pathButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>480</x>
@@ -84,7 +87,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Select Algorithm:</string>
+     <string>Select Algorithm: </string>
     </property>
    </widget>
    <widget class="QFrame" name="frame">
@@ -138,6 +141,9 @@
     </layout>
    </widget>
    <widget class="QPushButton" name="startButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>390</x>

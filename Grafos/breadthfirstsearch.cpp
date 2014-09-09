@@ -1,3 +1,4 @@
+#include <QList>
 #include "breadthfirstsearch.h"
 
 void BreadthFirstSearch::bfs() {

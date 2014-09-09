@@ -2,10 +2,8 @@
 #define BREADTHFIRSTSEARCH_H
 
 #include <QThread>
-#include <QList>
 #include "grafo.h"
 #include "vertice.h"
-#include "fila.h"
 
 class BreadthFirstSearch : public QThread
 {
