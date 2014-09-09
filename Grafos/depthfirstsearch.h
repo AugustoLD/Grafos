@@ -9,16 +9,22 @@ class DepthFirstSearch : public QThread
 {
     Q_OBJECT
 public:
-    void setGrafo(Grafo * g) {  this->g = g;}
+    void setParameters(Grafo * g, int initial, int final) {
+        this->g = g;
+        this->initial = initial;
+        this->final = final;
+    }
 
     void run() {
-        bfs();
+        dfs();
     }
 
 private:
     int tempo;
+    int initial;
+    int final;
     Grafo *g;
-    void bfs();
+    void dfs();
     void visit(Vertice *v);
 
 signals:

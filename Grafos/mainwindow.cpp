@@ -138,7 +138,7 @@ void MainWindow::on_actionLoad_triggered() {
 
 void MainWindow::init() {
     dfs = new DepthFirstSearch();
-    dfs->setGrafo(grafo);
+    dfs->setParameters(grafo, ui->cbOrigem->currentIndex(), ui->cbFinal->currentIndex());
     dfs->start();
     connect(dfs, SIGNAL(colorChanged()), SLOT(paint()));
 }

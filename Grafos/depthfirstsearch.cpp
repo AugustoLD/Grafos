@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-void DepthFirstSearch::bfs() {
+void DepthFirstSearch::dfs() {
     Vertice **V = g->getVertice();
     int n = g->getVerticeCount();
 
@@ -13,7 +13,7 @@ void DepthFirstSearch::bfs() {
         V[i]->setCor(Qt::white);
     }
     tempo = 0;
-    for(int i = 0; i < n; i++) {
+    for(int i = initial; i < n; i++) {
         if(V[i]->getCor() == Qt::white) {
             visit(V[i]);
         }
@@ -27,10 +27,8 @@ void DepthFirstSearch::visit(Vertice *v) {
     sleep(1);
     v->setTi(tempo++);
     for(a = v->getAresta(); a != NULL; a = a->getNext()) {
-        std::cout << a->getIdV2() << std::endl;
-        //std::cout << g->*getVertice[a->getIdV2()]->get
-        //std::cout << v[a->getIdV2()] << std::endl;
-        va = &v[a->getIdV2()];
+        va = g->getVertice()[a->getIdV2()];
+        std::cout << v->getNome().toStdString() << ' ' << va->getNome().toStdString() << std::endl;
 
         if(va->getCor() == Qt::white) {
             va->setPai(v);
