@@ -1,34 +1,37 @@
-void bfs(){
-        if(size == 0 ) return;
-        Fila *F = new Fila();
-        Vertice *v, *va;
+#include "breadthfirstsearch.h"
+
+void BreadthFirstSearch::bfs() {
+        f = new Fila();
+        Vertice **v = g->getVertice();
+        Vertice *v_aux, *v_atual;
         Aresta *a;
         int i;
 
-        for (i = 0; i<size;i++){
-            //Vertice[i]->setPai(NULL);
-            Vertice[i]->setCor(Qt::white);
-            Vertice[i]->setD(0);
+        for (i = 0; i < g->getVerticeCount(); i++) {
+            v[i]->setPai(NULL);
+            v[i]->setCor(Qt::white);
+            v[i]->setD(0);
         }
 
-        //Vertice[0]->setPai(NULL);
-        Vertice[0]->setCor(Qt::gray);
-        Vertice[0]->setD(0);
+        v[0]->setPai(NULL);
+        v[0]->setCor(Qt::gray);
+        v[0]->setD(0);
 
-        F->push(Vertice[0]);
+        f->append(v[0]);
 
-        while(!F->getIsEmpty()){
-            v->F->removeInicio();
-            for(a = v->getAresta();a != NULL;a = a->getNext()){
-                va = a->getV2();
-                if(va->getCor() == Qt::white){
-                    va->setCor(Qt::gray);
-                    //va->setPai(v);
-                    va->setD(v->getD()+1);
-                    F->appendVertice(va);
+        while(!f->isEmpty()) {
+            v_atual = (Vertice*) f->removeInicio();
+            for(a = v_atual->getAresta(); a != NULL; a = a->getNext()) {
+                v_aux = v[a->getIdV2()];
+                if(v_aux->getCor() == Qt::white) {
+                    v_aux->setCor(Qt::gray);
+                    v_aux->setPai(v_atual);
+                    v_aux->setD(v_atual->getD()+1);
+                    f->append(v_aux);
                 }
-                v->setCor(Qt::black);
+                v_atual->setCor(Qt::black);
             }
-            delete F;
+            delete f;
         }
     }
+

@@ -1,5 +1,5 @@
 #include "dijkstra.h"
-
+/*
 void Dijkstra :: dijkstra (int Vi){
     Vertice *V, *Va;
     Aresta *a;
@@ -30,5 +30,5 @@ void Dijkstra :: dijkstra (int Vi){
         L->append(Va);
     }
     delete L;
-}}
+}*/
 

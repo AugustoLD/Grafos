@@ -8,6 +8,7 @@
 #include <QPainter>
 #include <QPaintEvent>
 #include "depthfirstsearch.h"
+#include "breadthfirstsearch.h"
 
 namespace Ui {
 class MainWindow;
@@ -35,6 +36,7 @@ private:
     Ui::MainWindow *ui;
     Grafo *grafo, *tmp;
     DepthFirstSearch *dfs;
+    BreadthFirstSearch *bfs;
 
 protected:
     virtual void paintEvent(QPaintEvent *);

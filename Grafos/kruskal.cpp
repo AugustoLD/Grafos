@@ -1,4 +1,4 @@
-void kruskal(Aresta *a){
+/*void kruskal(Aresta *a){
        VKruskal = new Vertice *[n_vertices];
        for(int i=0;i<n_vertices;i++){
            VKruskal[i] = new Vertice(i,Vertice[i]->getNome(),Vertice[i]->getX(),Vertice[i]->getY());
@@ -19,3 +19,4 @@ void kruskal(Aresta *a){
            a = a->getNext();
        }
    }
+*/

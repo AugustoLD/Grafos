@@ -1,6 +1,6 @@
 #ifndef PRIM_H
 #define PRIM_H
-
+/*
 #include <QThread>
 #include "grafo.h"
 #include "vertice.h"
@@ -25,6 +25,6 @@ signals:
     void colorChanged();
 
 };
-
+*/
 
 #endif // PRIM_H

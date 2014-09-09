@@ -137,10 +137,14 @@ void MainWindow::on_actionLoad_triggered() {
 }
 
 void MainWindow::init() {
-    dfs = new DepthFirstSearch();
-    dfs->setParameters(grafo, ui->cbOrigem->currentIndex(), ui->cbFinal->currentIndex());
+    /*dfs = new DepthFirstSearch();
+    dfs->setParameters(grafo, ui->cbOrigem->currentIndex(), ui->cbFinal->currentText());
     dfs->start();
-    connect(dfs, SIGNAL(colorChanged()), SLOT(paint()));
+    connect(dfs, SIGNAL(colorChanged()), SLOT(paint()));*/
+    bfs = new BreadthFirstSearch();
+    bfs->setGrafo(grafo);
+    bfs->start();
+    connect(bfs, SIGNAL(colorChanged()), SLOT(paint()));
 }
 
 void MainWindow::paint() {

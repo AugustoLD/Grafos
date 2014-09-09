@@ -1,6 +1,6 @@
 #ifndef DIJKSTRA_H
 #define DIJKSTRA_H
-
+/*
 #include "aresta.h"
 #include <QThread>
 #include "grafo.h"
@@ -26,6 +26,6 @@ signals:
     void colorChanged();
 
 };
-
+*/
 
 #endif // DIJKSTRA_H

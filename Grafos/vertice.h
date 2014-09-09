@@ -31,11 +31,13 @@ public:
     QString getNome ()                   { return this->nome; }
     int     getX ()                      { return this->x;    }
     int     getY ()                      { return this->y;    }
+    int     getD ()                      { return this->d;    }
     QColor  getCor ()                    { return this->cor;  }
     void setCor(QColor cor)              { this->cor = cor;   }
     void setPai(Vertice *pai)            { this->pai = pai;   }
     void setTi(int ti)                   { this->ti = ti;     }
     void setTo(int to)                   { this->to = to;     }
+    void setD(int d)                     { this->d = d;       }
 
     ~Vertice() {
         qDebug() << "Excluindo vertice " << nome;

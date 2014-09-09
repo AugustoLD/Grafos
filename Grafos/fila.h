@@ -1,5 +1,5 @@
-#ifndef LISTA_H
-#define LISTA_H
+#ifndef FILA_H
+#define FILA_H
 
 #include "aresta.h"
 #include "vertice.h"
@@ -23,11 +23,11 @@ public:
     }
 };
 
-class Lista : public QObject {
+class Fila : public QObject {
     Q_OBJECT
 
 public:
-    Lista ( ) {
+    Fila() {
        first = NULL;
        last  = NULL;
     }
@@ -42,7 +42,7 @@ public:
         first = e;
     }
 
-    void * removeInicio  ( ) {
+    void * removeInicio() {
         void *e = NULL;
         Elemento *tmp;
         if (first!=NULL) {
@@ -54,7 +54,15 @@ public:
         return e;
     }
 
-    ~Lista () {
+    bool isEmpty() {
+        if(first == NULL) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    ~Fila () {
         if (first!=NULL) delete first;
     }
 
@@ -64,5 +72,4 @@ private:
     Elemento *last;
 };
 
-
-#endif // LISTA_H
+#endif // FILA_H
