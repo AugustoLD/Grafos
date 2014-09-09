@@ -12,13 +12,22 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    depthfirstsearch.cpp
+    depthfirstsearch.cpp \
+    dijkstra.cpp \
+    prim.cpp \
+    breadthfirstsearch.cpp \
+    kruskal.cpp
 
 HEADERS  += mainwindow.h \
     aresta.h \
     grafo.h \
     vertice.h \
     fila.h \
-    depthfirstsearch.h
+    depthfirstsearch.h \
+    dijkstra.h \
+    prim.h \
+    lista.h \
+    no.h \
+    breadthfirstsearch.h
 
 FORMS    += mainwindow.ui

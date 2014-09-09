@@ -1,0 +1,15 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\depthfirstsearch.o
+./release\dijkstra.o
+./release\prim.o
+./release\moc_mainwindow.o
+./release\moc_aresta.o
+./release\moc_grafo.o
+./release\moc_vertice.o
+./release\moc_fila.o
+./release\moc_depthfirstsearch.o
+./release\moc_dijkstra.o
+./release\moc_prim.o
+);
