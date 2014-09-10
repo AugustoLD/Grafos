@@ -16,19 +16,25 @@ void Kruskal::kruskal() {
     while((n_a-1 < g->getVerticeCount()) && (a != NULL)){
         v1 = vKruskal[a->getIdV1()];
         v2 = vKruskal[a->getIdV2()];
-        if(!find(v1,v2)) {
-            v1->add(a->getIdV1(), a->getIdV2(), a->getW());
-            v2->add(a->getIdV2(), a->getIdV1(), a->getW());
+        //if(!find(v1,v2)) {
+            //v1->add(a->getIdV1(), a->getIdV2(), a->getW());
+            //v2->add(a->getIdV2(), a->getIdV1(), a->getW());
             //join(v1,v2); //usa split se usar string, lista...
-            n_a++;
-        }
+            //n_a++;
+        //}
         a = a->getNext();
     }
 }
-
-bool Kruskal::find(Vertice *v1, Vertice *v2) {
-    for(int i = 0; i < g->getVerticeCount(); i++) {
-
-    }
-    return true;
+/*
+bool Kruskal::find(QString nome, QString L) {
+    QStringList S = split();
+    return S.contain(nome);
 }
+
+bool Kruskal::join(QString L1, QString L2){
+    QString c = L1 + L2;
+    QStringList S = c.split();
+    for each S
+        atualiza c;
+}
+*/
