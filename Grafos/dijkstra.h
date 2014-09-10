@@ -1,31 +1,33 @@
 #ifndef DIJKSTRA_H
 #define DIJKSTRA_H
-/*
-#include "aresta.h"
+
 #include <QThread>
 #include "grafo.h"
 #include "vertice.h"
+#include "aresta.h"
+
+#define INF 1000000
 
 class Dijkstra : public QThread
 {
     Q_OBJECT
 public:
-    void setGrafo(Grafo * g) {  this->g = g;}
+    void setParameters(Grafo * g, int initial) {  this->g = g; this->initial = initial;}
 
     void run() {
-        bfs();
+        dijkstra();
     }
 
 private:
     int tempo;
+    int initial;
     Grafo *g;
-    void bfs();
-    void dijkstra(int Vi);
+    void dijkstra();
 
 signals:
     void colorChanged();
 
 };
-*/
+
 
 #endif // DIJKSTRA_H

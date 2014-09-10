@@ -11,6 +11,7 @@
 #include "breadthfirstsearch.h"
 #include "topologica.h"
 #include "prim.h"
+#include "dijkstra.h"
 
 namespace Ui {
 class MainWindow;
@@ -43,6 +44,7 @@ private:
     BreadthFirstSearch *bfs;
     Topologica *topologic;
     Prim *prim;
+    Dijkstra *dijkstra;
 
 protected:
     virtual void paintEvent(QPaintEvent *);

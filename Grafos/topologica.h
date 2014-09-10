@@ -9,10 +9,9 @@ class Topologica : public QThread
 {
     Q_OBJECT
 public:
-    void setParameters(Grafo * g, int initial, int final) {
+    void setParameters(Grafo * g, int initial) {
         this->grafo = g;
-        this->VerticeInitial = initial;
-        this->VerticeFinal = final;
+        this->initial = initial;
     }
     void run() {
         ordenacaoTopologica();
@@ -24,8 +23,7 @@ public:
 
 private:
     int tempo;
-    int VerticeInitial;
-    int VerticeFinal;
+    int initial;
     Grafo *grafo;
     QList<Vertice *> lista;
 

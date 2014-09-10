@@ -16,7 +16,6 @@ public:
         this->nome   = nome;
         this->x      = x;
         this->y      = y;
-
         this->ti     = 0;
         this->to     = 0;
         this->d      = 0;

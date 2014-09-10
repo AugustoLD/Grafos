@@ -10,7 +10,7 @@ void Topologica::ordenacaoTopologica() {
         V[i]->setCor(Qt::white);
     }
     tempo = 0;
-    for(int i = VerticeInitial; i < n; i++) {
+    for(int i = initial; i < n; i++) {
         if(V[i]->getCor() == Qt::white) {
             visit(V[i]);
         }

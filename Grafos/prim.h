@@ -12,10 +12,9 @@ class Prim : public QThread
 {
     Q_OBJECT
 public:
-    void setParameters(Grafo * g, int initial, int final) {
+    void setParameters(Grafo * g, int initial) {
         this->grafo = g;
         this->initial = initial;
-        this->final = final;
     }
 
     void run() {
@@ -28,7 +27,6 @@ public:
 private:
     int tempo;
     int initial;
-    int final;
     Grafo *grafo;
     QList<Vertice *> lista;
 

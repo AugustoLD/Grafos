@@ -9,10 +9,9 @@ class BreadthFirstSearch : public QThread
 {
     Q_OBJECT
 public:
-    void setGrafo(Grafo * g, int initial, int final) {
+    void setGrafo(Grafo * g, int initial) {
         this->g = g;
         this->initial = initial;
-        this->final = final;
     }
 
     void run() {
@@ -22,7 +21,6 @@ public:
 private:
     int tempo;
     int initial;
-    int final;
     Grafo *g;
     void bfs();
 

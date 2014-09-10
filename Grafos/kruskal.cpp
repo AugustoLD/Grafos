@@ -30,4 +30,5 @@ bool Kruskal::find(Vertice *v1, Vertice *v2) {
     for(int i = 0; i < g->getVerticeCount(); i++) {
 
     }
+    return true;
 }

@@ -32,6 +32,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->algorithmComboBox->addItem("Breadth First Search");
     this->ui->algorithmComboBox->addItem("Topologic Ordenation");
     this->ui->algorithmComboBox->addItem("Prim");
+    this->ui->algorithmComboBox->addItem("Dijkstra");
+
 
     QMainWindow::paintEvent(new QPaintEvent(this->geometry()));
     this->grafo=this->tmp=NULL;
@@ -157,31 +159,38 @@ void MainWindow::init() {
     switch (selectedAlgorithm) {
     case 0:
         dfs = new DepthFirstSearch();
-        dfs->setParameters(grafo, ui->cbOrigem->currentIndex(), ui->cbFinal->currentIndex());
+        dfs->setParameters(grafo, ui->cbOrigem->currentIndex());
         dfs->start();
         connect(dfs, SIGNAL(colorChanged()), SLOT(paint()));
         connect(dfs, SIGNAL(finished()), SLOT(freeButtons()));
         break;
     case 1:
         bfs = new BreadthFirstSearch();
-        bfs->setGrafo(grafo, ui->cbOrigem->currentIndex(), ui->cbFinal->currentIndex());
+        bfs->setGrafo(grafo, ui->cbOrigem->currentIndex());
         bfs->start();
         connect(bfs, SIGNAL(colorChanged()), SLOT(paint()));
         connect(bfs, SIGNAL(finished()), SLOT(freeButtons()));
         break;
     case 2:
         topologic = new Topologica();
-        topologic->setParameters(grafo, ui->cbOrigem->currentIndex(), ui->cbFinal->currentIndex());
+        topologic->setParameters(grafo, ui->cbOrigem->currentIndex());
         topologic->start();
         connect(topologic, SIGNAL(colorChanged()), SLOT(paint()));
         connect(topologic, SIGNAL(finished()), SLOT(freeButtons()));
         break;
     case 3:
         prim = new Prim();
-        prim->setParameters(grafo, ui->cbOrigem->currentIndex(), ui->cbFinal->currentIndex());
+        prim->setParameters(grafo, ui->cbOrigem->currentIndex());
         prim->start();
         connect(prim, SIGNAL(colorChanged()), SLOT(paint()));
         connect(prim, SIGNAL(finished()), SLOT(freeButtons()));
+        break;
+    case 4:
+        dijkstra = new Dijkstra();
+        dijkstra->setParameters(grafo, ui->cbOrigem->currentIndex());
+        dijkstra->start();
+        connect(dijkstra, SIGNAL(colorChanged()), SLOT(paint()));
+        connect(dijkstra, SIGNAL(finished()), SLOT(freeButtons()));
         break;
 
     }
@@ -201,6 +210,9 @@ void MainWindow::showPath() {
         this->ui->textEdit->setText(Path::topologicListToString(topologic->getList()));
         break;
     case 3:
+        this->ui->textEdit->setText(Path::getPath(grafo, this->ui->cbFinal->currentIndex()));
+        break;
+    case 4:
         this->ui->textEdit->setText(Path::getPath(grafo, this->ui->cbFinal->currentIndex()));
         break;
     }

@@ -24,12 +24,9 @@ HEADERS  += mainwindow.h \
     aresta.h \
     grafo.h \
     vertice.h \
-    fila.h \
     depthfirstsearch.h \
     dijkstra.h \
     prim.h \
-    lista.h \
-    no.h \
     breadthfirstsearch.h \
     kruskal.h \
     path.h \
