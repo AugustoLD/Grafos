@@ -90,56 +90,6 @@
      <string>Select Algorithm: </string>
     </property>
    </widget>
-   <widget class="QFrame" name="frame">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>280</y>
-      <width>225</width>
-      <height>82</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="0">
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <widget class="QLabel" name="labelInicial">
-           <property name="text">
-            <string>Select initial node:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="cbOrigem"/>
-         </item>
-        </layout>
-       </item>
-       <item row="1" column="0">
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QLabel" name="labelFinal">
-           <property name="text">
-            <string>Select final node:  </string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="cbFinal"/>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
    <widget class="QPushButton" name="startButton">
     <property name="enabled">
      <bool>false</bool>
@@ -156,6 +106,52 @@
      <string>Start</string>
     </property>
    </widget>
+   <widget class="QComboBox" name="cbOrigem">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>150</y>
+      <width>92</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelInicial">
+    <property name="geometry">
+     <rect>
+      <x>91</x>
+      <y>150</y>
+      <width>103</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Select initial node:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelFinal">
+    <property name="geometry">
+     <rect>
+      <x>21</x>
+      <y>300</y>
+      <width>103</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Select final node:  </string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cbFinal">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>300</y>
+      <width>71</width>
+      <height>30</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -163,7 +159,7 @@
      <x>0</x>
      <y>0</y>
      <width>613</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGrafos">

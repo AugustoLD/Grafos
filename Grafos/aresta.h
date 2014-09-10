@@ -42,9 +42,6 @@ public:
             delete this->next;
     }
 
-protected:
-  //  Aresta *next;
-
 private:
     Aresta *next;
     int id1;

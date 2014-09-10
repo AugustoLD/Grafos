@@ -16,7 +16,9 @@ SOURCES += main.cpp\
     dijkstra.cpp \
     prim.cpp \
     breadthfirstsearch.cpp \
-    kruskal.cpp
+    kruskal.cpp \
+    path.cpp \
+    topologica.cpp
 
 HEADERS  += mainwindow.h \
     aresta.h \
@@ -29,6 +31,8 @@ HEADERS  += mainwindow.h \
     lista.h \
     no.h \
     breadthfirstsearch.h \
-    kruskal.h
+    kruskal.h \
+    path.h \
+    topologica.h
 
 FORMS    += mainwindow.ui

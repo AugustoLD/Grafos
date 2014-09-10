@@ -9,6 +9,8 @@
 #include <QPaintEvent>
 #include "depthfirstsearch.h"
 #include "breadthfirstsearch.h"
+#include "topologica.h"
+#include "prim.h"
 
 namespace Ui {
 class MainWindow;
@@ -32,12 +34,15 @@ private slots:
     void init();
     void paint();
     void freeButtons();
+    void showPath();
 
 private:
     Ui::MainWindow *ui;
     Grafo *grafo, *tmp;
     DepthFirstSearch *dfs;
     BreadthFirstSearch *bfs;
+    Topologica *topologic;
+    Prim *prim;
 
 protected:
     virtual void paintEvent(QPaintEvent *);

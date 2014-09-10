@@ -11,13 +11,12 @@ void BreadthFirstSearch::bfs() {
     for (i = 0; i < g->getVerticeCount(); i++) {
         v[i]->setPai(NULL);
         v[i]->setCor(Qt::white);
-        v[i]->setD(0);
+        v[i]->setD(-1);
     }
 
-    v[0]->setPai(NULL);
-    v[0]->setD(0);
+    v[initial]->setD(0);
 
-    f.append(v[0]);
+    f.append(v[initial]);
 
     while(!f.isEmpty()) {
         v_atual = f.takeFirst();

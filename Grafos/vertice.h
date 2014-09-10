@@ -33,6 +33,7 @@ public:
     int     getY ()                      { return this->y;    }
     int     getD ()                      { return this->d;    }
     QColor  getCor ()                    { return this->cor;  }
+    Vertice*  getPai ()                  { return this->pai;  }
     void setCor(QColor cor)              { this->cor = cor;   }
     void setPai(Vertice *pai)            { this->pai = pai;   }
     void setTi(int ti)                   { this->ti = ti;     }

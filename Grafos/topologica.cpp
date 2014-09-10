@@ -1,10 +1,8 @@
-#include "depthfirstsearch.h"
-#include <iostream>
+#include "topologica.h"
 
-void DepthFirstSearch::dfs() {
-    Vertice **V = g->getVertice();
-    int n = g->getVerticeCount();
-
+void Topologica::ordenacaoTopologica() {
+    Vertice **V = grafo->getVertice();
+    int n = grafo->getVerticeCount();
     for(int i = 0; i < n; i++) {
         V[i]->setPai(NULL);
         V[i]->setTi(-1);
@@ -12,21 +10,21 @@ void DepthFirstSearch::dfs() {
         V[i]->setCor(Qt::white);
     }
     tempo = 0;
-    for(int i = initial; i < n; i++) {
+    for(int i = VerticeInitial; i < n; i++) {
         if(V[i]->getCor() == Qt::white) {
             visit(V[i]);
         }
     }
 }
 
-void DepthFirstSearch::visit(Vertice *v) {
+void Topologica::visit(Vertice *v) {
     Aresta *a; Vertice *va;
     v->setCor(Qt::gray);
     emit colorChanged();
     sleep(1);
     v->setTi(tempo++);
     for(a = v->getAresta(); a != NULL; a = a->getNext()) {
-        va = g->getVertice()[a->getIdV2()];
+        va = grafo->getVertice()[a->getIdV2()];
         if(va->getCor() == Qt::white) {
             va->setPai(v);
             visit(va);
@@ -34,6 +32,7 @@ void DepthFirstSearch::visit(Vertice *v) {
     }
     v->setTo(tempo++);
     v->setCor(Qt::black);
+    lista.append(v);
     emit colorChanged();
     sleep(1);
 }

@@ -38,7 +38,7 @@ public:
             qDebug() << "Vertice de [origem|destino] não encontrado: " << source << ", " << target;
             return false;
         }
-        Aresta::append( &aresta, s, t, w );
+        Aresta::append(&aresta, s, t, w);
         vertice[s]->add( s, t, w);
         return true;
     }

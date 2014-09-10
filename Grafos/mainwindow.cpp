@@ -7,6 +7,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <iostream>
+#include "path.h"
 
 using namespace std;
 
@@ -17,19 +18,26 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->ui->toolBar->addWidget(this->ui->algorithmLabel);
     this->ui->toolBar->addWidget(this->ui->algorithmComboBox);
-    for(int i = 0; i < 23; i++) this->ui->toolBar->addSeparator();
+    this->ui->toolBar->addSeparator();
+    this->ui->toolBar->addWidget(this->ui->labelInicial);
+    this->ui->toolBar->addWidget(this->ui->cbOrigem);
+    for(int i = 0; i < 5; i++) this->ui->toolBar->addSeparator();
     this->ui->toolBar->addWidget(this->ui->startButton);
-    this->ui->statusBar->addWidget(this->ui->frame);
+    this->ui->statusBar->addWidget(this->ui->labelFinal);
+    this->ui->statusBar->addWidget(this->ui->cbFinal);
     this->ui->statusBar->addWidget(this->ui->textEdit);
     this->ui->statusBar->addWidget(this->ui->pathButton);
 
     this->ui->algorithmComboBox->addItem("Depth First Search");
     this->ui->algorithmComboBox->addItem("Breadth First Search");
+    this->ui->algorithmComboBox->addItem("Topologic Ordenation");
+    this->ui->algorithmComboBox->addItem("Prim");
 
     QMainWindow::paintEvent(new QPaintEvent(this->geometry()));
     this->grafo=this->tmp=NULL;
     connect( this, SIGNAL (mostrar(Grafo * )), this, SLOT(mostrarGrafo(Grafo*)) );
     connect(ui->startButton, SIGNAL(clicked()), SLOT(init()));
+    connect(this->ui->pathButton, SIGNAL(clicked()), SLOT(showPath()));
 }
 
 void MainWindow::paintEvent(QPaintEvent *) {
@@ -149,17 +157,51 @@ void MainWindow::init() {
     switch (selectedAlgorithm) {
     case 0:
         dfs = new DepthFirstSearch();
-        dfs->setParameters(grafo, ui->cbOrigem->currentIndex(), ui->cbFinal->currentText());
+        dfs->setParameters(grafo, ui->cbOrigem->currentIndex(), ui->cbFinal->currentIndex());
         dfs->start();
         connect(dfs, SIGNAL(colorChanged()), SLOT(paint()));
         connect(dfs, SIGNAL(finished()), SLOT(freeButtons()));
         break;
     case 1:
         bfs = new BreadthFirstSearch();
-        bfs->setGrafo(grafo);
+        bfs->setGrafo(grafo, ui->cbOrigem->currentIndex(), ui->cbFinal->currentIndex());
         bfs->start();
         connect(bfs, SIGNAL(colorChanged()), SLOT(paint()));
         connect(bfs, SIGNAL(finished()), SLOT(freeButtons()));
+        break;
+    case 2:
+        topologic = new Topologica();
+        topologic->setParameters(grafo, ui->cbOrigem->currentIndex(), ui->cbFinal->currentIndex());
+        topologic->start();
+        connect(topologic, SIGNAL(colorChanged()), SLOT(paint()));
+        connect(topologic, SIGNAL(finished()), SLOT(freeButtons()));
+        break;
+    case 3:
+        prim = new Prim();
+        prim->setParameters(grafo, ui->cbOrigem->currentIndex(), ui->cbFinal->currentIndex());
+        prim->start();
+        connect(prim, SIGNAL(colorChanged()), SLOT(paint()));
+        connect(prim, SIGNAL(finished()), SLOT(freeButtons()));
+        break;
+
+    }
+}
+
+void MainWindow::showPath() {
+    int selectedAlgorithm = this->ui->algorithmComboBox->currentIndex();
+
+    switch (selectedAlgorithm) {
+    case 0:
+        this->ui->textEdit->setText(Path::getPath(grafo, this->ui->cbFinal->currentIndex()));
+        break;
+    case 1:
+        this->ui->textEdit->setText(Path::getPath(grafo, this->ui->cbFinal->currentIndex()));
+        break;
+    case 2:
+        this->ui->textEdit->setText(Path::topologicListToString(topologic->getList()));
+        break;
+    case 3:
+        this->ui->textEdit->setText(Path::getPath(grafo, this->ui->cbFinal->currentIndex()));
         break;
     }
 }
