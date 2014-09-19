@@ -6,7 +6,7 @@
 #include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <iostream>
+#include <QPoint>
 #include "path.h"
 
 using namespace std;
@@ -25,14 +25,15 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->toolBar->addWidget(this->ui->startButton);
     this->ui->statusBar->addWidget(this->ui->labelFinal);
     this->ui->statusBar->addWidget(this->ui->cbFinal);
-    this->ui->statusBar->addWidget(this->ui->textEdit);
-    this->ui->statusBar->addWidget(this->ui->pathButton);
+    this->ui->statusBar->addWidget(this->ui->textEdit, 5);
+    this->ui->statusBar->addWidget(this->ui->pathButton, 2);
 
     this->ui->algorithmComboBox->addItem("Depth First Search");
     this->ui->algorithmComboBox->addItem("Breadth First Search");
     this->ui->algorithmComboBox->addItem("Topologic Ordenation");
     this->ui->algorithmComboBox->addItem("Prim");
     this->ui->algorithmComboBox->addItem("Dijkstra");
+
 
 
     QMainWindow::paintEvent(new QPaintEvent(this->geometry()));
@@ -46,7 +47,6 @@ void MainWindow::paintEvent(QPaintEvent *) {
     if (this->tmp==NULL) return;
 
     QPainter painter(this);
-    painter.setPen(Qt::SolidLine);
 
     Vertice **vertice = tmp->getVertice();
     Vertice *v, *v1, *v2;
@@ -54,16 +54,20 @@ void MainWindow::paintEvent(QPaintEvent *) {
     int n = tmp->getVerticeCount();
 
     // Pintar primeiramente as arestas
-    painter.setPen( Qt::black );
-    painter.setPen( Qt::SolidLine );
 
     for (int i=0; i<n; i++) {
-        a=vertice[i]->getAresta();
+        a = tmp->getAresta();
         while (a!=NULL) {
             v1 = vertice[a->getIdV1()];
             v2 = vertice[a->getIdV2()];
-            painter.setPen(a->getCor());
-            painter.drawLine( QPoint (v1->getX(), v1->getY()), QPoint (v2->getX(), v2->getY()) );
+            painter.setPen(a->getPen());
+            QPoint p1 = QPoint (v1->getX(), v1->getY());
+            QPoint p2 = QPoint (v2->getX(), v2->getY());
+            painter.drawLine(p1, p2);
+            int x = (p1.x()+p2.x())/2;
+            int y = (p1.y()+p2.y())/2;
+            QRect rect ( x-4,  y, x,  y );
+            painter.drawText (rect, QString::number(a->getW()));
             a = a->getNext();
         }
     }
@@ -162,7 +166,7 @@ void MainWindow::init() {
         dfs = new DepthFirstSearch();
         dfs->setParameters(grafo, ui->cbOrigem->currentIndex());
         dfs->start();
-        connect(dfs, SIGNAL(colorChanged()), SLOT(paint()));
+        connect(dfs, SIGNAL(colorChanged()), SLOT(update()));
         connect(dfs, SIGNAL(finished()), SLOT(freeButtons()));
         break;
     case 1:
@@ -227,6 +231,7 @@ void MainWindow::freeButtons()
 
 
 void MainWindow::paint() {
+    this->tmp = grafo;
     update();
 }
 

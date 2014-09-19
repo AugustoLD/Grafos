@@ -11,9 +11,6 @@ void Prim::prim() {
         V[i]->setCor(Qt::white);
         lista.append(V[i]);
     }
-    for(Aresta *a; a != NULL; a = a->getNext()) {
-        a->setCor(Qt::black);
-    }
     V[initial]->setD(0);
     while ( !lista.empty() ) {
         qDebug() << "ListaSize:" << lista.size();

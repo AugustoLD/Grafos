@@ -12,9 +12,6 @@ void Dijkstra::dijkstra() {
         vertices[i]->setPai(NULL);
         vertices[i]->setD(INF);
     }
-    for(Aresta *a; a != NULL; a = a->getNext()) {
-        a->setCor(Qt::black);
-    }
     vertices[initial]->setCor(Qt::gray);
     emit colorChanged();
     sleep(1);

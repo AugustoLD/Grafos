@@ -9,9 +9,6 @@ void Topologica::ordenacaoTopologica() {
         V[i]->setTo(-1);
         V[i]->setCor(Qt::white);
     }
-    for(Aresta *a; a != NULL; a = a->getNext()) {
-        a->setCor(Qt::black);
-    }
     tempo = 0;
     for(int i = initial; i < n; i++) {
         if(V[i]->getCor() == Qt::white) {

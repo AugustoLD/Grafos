@@ -2,13 +2,13 @@
 #define ARESTA_H
 
 #include <QDebug>
-#include <QColor>
+#include <QPen>
 
 class Aresta : public QObject {
     Q_OBJECT
 
 public:
-    Aresta ( int id1, int id2, int w ) {
+    Aresta (int id1, int id2, int w) {
         this->id1  = id1; // origem
         this->id2  = id2; // destino
         this->w    = w;
@@ -22,14 +22,14 @@ public:
             append( &(*aresta)->next, id1, id2, w );
     }
 
-    QColor getCor() { return this->cor; }
+    QPen getPen() { return this->pen; }
     int getW ()  { return this->w;   }
     int getIdV1() { return this->id1; }
     int getIdV2() { return this->id2; }
 
-    Aresta *getNext() { return this->next;         }
+    Aresta *getNext() { return this->next;  }
 
-    void setCor(QColor cor) { this->cor = cor; }
+    void setPen(QPen pen) { this->pen = pen; }
 
     ~Aresta() {
         qDebug() << "Excluindo aresta (" << id1 <<","<<id2<<"," << w << ")";
@@ -39,7 +39,7 @@ public:
 
 private:
     Aresta *next;
-    QColor cor;
+    QPen pen;
     int id1;
     int id2;
     int w;
