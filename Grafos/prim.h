@@ -18,10 +18,10 @@ public:
     }
 
     void run() {
-        metodoPrim();
+        prim();
     }
 
-    void metodoPrim();
+    void prim();
     Vertice* popMenor();
 
 private:

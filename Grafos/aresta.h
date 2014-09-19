@@ -2,6 +2,7 @@
 #define ARESTA_H
 
 #include <QDebug>
+#include <QColor>
 
 class Aresta : public QObject {
     Q_OBJECT
@@ -14,14 +15,6 @@ public:
         this->next = NULL;
     }
 
-   /* void Append ( int id1, int id2, int w ) {
-        if (this->next==NULL) {
-            qDebug() << "Incluindo aresta (" << id1 <<","<< id2 <<"," << w << ")";
-            this->next = new Aresta ( id1, id2, w);
-        } else
-            this->next->Append( id1, id2, w);
-    }*/
-
     static void append ( Aresta **aresta, int id1, int id2, int w ) {
         if (*aresta==NULL)
             *aresta = new Aresta ( id1, id2, w);
@@ -29,12 +22,14 @@ public:
             append( &(*aresta)->next, id1, id2, w );
     }
 
+    QColor getCor() { return this->cor; }
     int getW ()  { return this->w;   }
     int getIdV1() { return this->id1; }
     int getIdV2() { return this->id2; }
 
     Aresta *getNext() { return this->next;         }
 
+    void setCor(QColor cor) { this->cor = cor; }
 
     ~Aresta() {
         qDebug() << "Excluindo aresta (" << id1 <<","<<id2<<"," << w << ")";
@@ -44,6 +39,7 @@ public:
 
 private:
     Aresta *next;
+    QColor cor;
     int id1;
     int id2;
     int w;

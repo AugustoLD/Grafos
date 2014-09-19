@@ -26,8 +26,8 @@ private:
     Grafo *g;
     Vertice **vKruskal;
     void kruskal();
-    bool find(QString nome, QString L);
-    bool join(QString L1, QString L2);
+    bool find(QString nome, QString l);
+    void join(QString L1, QString L2);
 
 signals:
     void colorChanged();

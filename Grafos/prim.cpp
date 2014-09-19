@@ -1,7 +1,6 @@
 #include "prim.h"
 
-void Prim::metodoPrim() {
-    qDebug() << "chegou metodo PRIM";
+void Prim::prim() {
     int n = grafo->getVerticeCount();
     Vertice **V = grafo->getVertice();
     Vertice *verticeAtual, *vertice;
@@ -12,7 +11,9 @@ void Prim::metodoPrim() {
         V[i]->setCor(Qt::white);
         lista.append(V[i]);
     }
-    qDebug() << "Saiu do for";
+    for(Aresta *a; a != NULL; a = a->getNext()) {
+        a->setCor(Qt::black);
+    }
     V[initial]->setD(0);
     while ( !lista.empty() ) {
         qDebug() << "ListaSize:" << lista.size();
@@ -29,7 +30,6 @@ void Prim::metodoPrim() {
             }
         }
         vertice->setCor(Qt::black);
-        qDebug() << "Pintou Preto ";
         emit colorChanged();
         sleep(1);
     }

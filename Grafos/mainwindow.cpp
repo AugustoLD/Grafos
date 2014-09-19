@@ -62,6 +62,7 @@ void MainWindow::paintEvent(QPaintEvent *) {
         while (a!=NULL) {
             v1 = vertice[a->getIdV1()];
             v2 = vertice[a->getIdV2()];
+            painter.setPen(a->getCor());
             painter.drawLine( QPoint (v1->getX(), v1->getY()), QPoint (v2->getX(), v2->getY()) );
             a = a->getNext();
         }

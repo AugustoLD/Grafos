@@ -13,6 +13,9 @@ void BreadthFirstSearch::bfs() {
         v[i]->setCor(Qt::white);
         v[i]->setD(-1);
     }
+    for(Aresta *a; a != NULL; a = a->getNext()) {
+        a->setCor(Qt::black);
+    }
 
     v[initial]->setD(0);
 
