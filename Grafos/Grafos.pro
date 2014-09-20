@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     breadthfirstsearch.cpp \
     kruskal.cpp \
     path.cpp \
-    topologica.cpp
+    topologica.cpp \
+    fordfulkerson.cpp
 
 HEADERS  += mainwindow.h \
     aresta.h \
@@ -30,6 +31,7 @@ HEADERS  += mainwindow.h \
     breadthfirstsearch.h \
     kruskal.h \
     path.h \
-    topologica.h
+    topologica.h \
+    fordfulkerson.h
 
 FORMS    += mainwindow.ui

@@ -19,7 +19,6 @@ public:
         vertice     = new Vertice*[max];
         for (int i=0; i<max; i++)
             vertice[i] = NULL;
-
     }
 
     void add ( QString nome, int x, int y ) {

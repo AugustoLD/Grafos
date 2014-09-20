@@ -34,13 +34,14 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->algorithmComboBox->addItem("Prim");
     this->ui->algorithmComboBox->addItem("Dijkstra");
     this->ui->algorithmComboBox->addItem("Kruskal");
-
+    this->ui->algorithmComboBox->addItem("Ford-Fulkerson");
 
     QMainWindow::paintEvent(new QPaintEvent(this->geometry()));
     this->grafo=this->tmp=NULL;
     connect( this, SIGNAL (mostrar(Grafo * )), this, SLOT(mostrarGrafo(Grafo*)) );
     connect(ui->startButton, SIGNAL(clicked()), SLOT(init()));
     connect(this->ui->pathButton, SIGNAL(clicked()), SLOT(showPath()));
+
 }
 
 void MainWindow::paintEvent(QPaintEvent *) {
@@ -56,7 +57,8 @@ void MainWindow::paintEvent(QPaintEvent *) {
     // Pintar primeiramente as arestas
 
     for (int i=0; i<n; i++) {
-        a = tmp->getAresta();
+        if(isFordFulkerson) a = vertice[i]->getAresta();
+        else a = tmp->getAresta();
         while (a!=NULL) {
             v1 = vertice[a->getIdV1()];
             v2 = vertice[a->getIdV2()];
@@ -67,7 +69,12 @@ void MainWindow::paintEvent(QPaintEvent *) {
             int x = (p1.x()+p2.x())/2;
             int y = (p1.y()+p2.y())/2;
             QRect rect ( x-4,  y, x,  y );
-            painter.drawText (rect, QString::number(a->getW()));
+            if(isFordFulkerson) {
+                 painter.drawText (rect, QString::number(a->getFlow()) + "/" +
+                                   QString::number(a->getCapacity()));
+            } else {
+                painter.drawText (rect, QString::number(a->getW()));
+            }
             a = a->getNext();
         }
     }
@@ -166,6 +173,7 @@ void MainWindow::init() {
         a->setColor(Qt::black);
         a = a->getNext();
     }
+    isFordFulkerson = false;
 
     switch (selectedAlgorithm) {
     case 0:
@@ -210,7 +218,14 @@ void MainWindow::init() {
         connect(kruskal, SIGNAL(colorChanged()), SLOT(paint()));
         connect(kruskal, SIGNAL(finished()), SLOT(freeButtons()));
         break;
-
+    case 6:
+        fordFulkerson = new FordFulkerson();
+        fordFulkerson->setParameters(grafo, ui->cbOrigem->currentIndex(), ui->cbFinal->currentIndex());
+        fordFulkerson->start();
+        isFordFulkerson = true;
+        connect(fordFulkerson, SIGNAL(colorChanged()), SLOT(paint()));
+        connect(fordFulkerson, SIGNAL(finished()), SLOT(freeButtons()));
+        break;
     }
 }
 

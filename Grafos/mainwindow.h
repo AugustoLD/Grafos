@@ -13,6 +13,7 @@
 #include "prim.h"
 #include "dijkstra.h"
 #include "kruskal.h"
+#include "fordfulkerson.h"
 
 namespace Ui {
 class MainWindow;
@@ -47,6 +48,8 @@ private:
     Prim *prim;
     Dijkstra *dijkstra;
     Kruskal *kruskal;
+    FordFulkerson *fordFulkerson;
+    bool isFordFulkerson;
 
 protected:
     virtual void paintEvent(QPaintEvent *);
