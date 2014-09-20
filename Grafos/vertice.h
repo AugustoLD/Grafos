@@ -4,8 +4,9 @@
 #include <QObject>
 #include <QDebug>
 #include <QColor>
+#include "aresta.h"
 
-#include <aresta.h>
+#define INF 1000000
 
 class Vertice : public QObject {
     Q_OBJECT

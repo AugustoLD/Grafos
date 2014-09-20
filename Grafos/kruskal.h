@@ -25,11 +25,10 @@ private:
     Grafo *g;
     Vertice **vKruskal;
     void kruskal();
-    bool find(QString nome, QString l);
+    bool find(int id, QString l);
     void join(QString L1, QString L2);
     QList <Aresta *> ArestaToList (Aresta * a);
     QList <Aresta *> sort(Aresta * a);
-    Aresta* getOriginalAresta(Aresta * a);
 
 signals:
     void colorChanged();

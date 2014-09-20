@@ -6,8 +6,6 @@
 #include "grafo.h"
 #include "vertice.h"
 
-#define INF 100000
-
 class Prim : public QThread
 {
     Q_OBJECT

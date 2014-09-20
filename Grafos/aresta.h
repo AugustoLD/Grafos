@@ -2,7 +2,7 @@
 #define ARESTA_H
 
 #include <QDebug>
-#include <QPen>
+#include <QColor>
 
 class Aresta : public QObject {
     Q_OBJECT
@@ -22,14 +22,14 @@ public:
             append( &(*aresta)->next, id1, id2, w );
     }
 
-    QPen getPen() { return this->pen; }
+    QColor getColor() { return this->color; }
     int getW ()  { return this->w;   }
     int getIdV1() { return this->id1; }
     int getIdV2() { return this->id2; }
 
     Aresta *getNext() { return this->next;  }
 
-    void setPen(QPen pen) { this->pen = pen; }
+    void setColor(QColor color) { this->color = color; }
 
     ~Aresta() {
         qDebug() << "Excluindo aresta (" << id1 <<","<<id2<<"," << w << ")";
@@ -39,7 +39,7 @@ public:
 
 private:
     Aresta *next;
-    QPen pen;
+    QColor color;
     int id1;
     int id2;
     int w;

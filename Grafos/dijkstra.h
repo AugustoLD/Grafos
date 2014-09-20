@@ -6,8 +6,6 @@
 #include "vertice.h"
 #include "aresta.h"
 
-#define INF 1000000
-
 class Dijkstra : public QThread
 {
     Q_OBJECT

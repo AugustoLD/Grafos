@@ -33,7 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->algorithmComboBox->addItem("Topologic Ordenation");
     this->ui->algorithmComboBox->addItem("Prim");
     this->ui->algorithmComboBox->addItem("Dijkstra");
-
+    this->ui->algorithmComboBox->addItem("Kruskal");
 
 
     QMainWindow::paintEvent(new QPaintEvent(this->geometry()));
@@ -60,7 +60,7 @@ void MainWindow::paintEvent(QPaintEvent *) {
         while (a!=NULL) {
             v1 = vertice[a->getIdV1()];
             v2 = vertice[a->getIdV2()];
-            painter.setPen(a->getPen());
+            painter.setPen(a->getColor());
             QPoint p1 = QPoint (v1->getX(), v1->getY());
             QPoint p2 = QPoint (v2->getX(), v2->getY());
             painter.drawLine(p1, p2);
@@ -161,6 +161,12 @@ void MainWindow::init() {
     this->ui->startButton->setDisabled(true);
     this->ui->pathButton->setDisabled(true);
 
+    Aresta *a = grafo->getAresta();
+    while(a != NULL) {
+        a->setColor(Qt::black);
+        a = a->getNext();
+    }
+
     switch (selectedAlgorithm) {
     case 0:
         dfs = new DepthFirstSearch();
@@ -196,6 +202,13 @@ void MainWindow::init() {
         dijkstra->start();
         connect(dijkstra, SIGNAL(colorChanged()), SLOT(paint()));
         connect(dijkstra, SIGNAL(finished()), SLOT(freeButtons()));
+        break;
+    case 5:
+        kruskal = new Kruskal();
+        kruskal->setParameters(grafo, ui->cbOrigem->currentIndex());
+        kruskal->start();
+        connect(kruskal, SIGNAL(colorChanged()), SLOT(paint()));
+        connect(kruskal, SIGNAL(finished()), SLOT(freeButtons()));
         break;
 
     }

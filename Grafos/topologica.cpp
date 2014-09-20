@@ -5,8 +5,8 @@ void Topologica::ordenacaoTopologica() {
     int n = grafo->getVerticeCount();
     for(int i = 0; i < n; i++) {
         V[i]->setPai(NULL);
-        V[i]->setTi(-1);
-        V[i]->setTo(-1);
+        V[i]->setTi(INF);
+        V[i]->setTo(INF);
         V[i]->setCor(Qt::white);
     }
     tempo = 0;

@@ -12,6 +12,7 @@
 #include "topologica.h"
 #include "prim.h"
 #include "dijkstra.h"
+#include "kruskal.h"
 
 namespace Ui {
 class MainWindow;
@@ -45,6 +46,7 @@ private:
     Topologica *topologic;
     Prim *prim;
     Dijkstra *dijkstra;
+    Kruskal *kruskal;
 
 protected:
     virtual void paintEvent(QPaintEvent *);

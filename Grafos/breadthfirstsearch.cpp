@@ -11,7 +11,7 @@ void BreadthFirstSearch::bfs() {
     for (i = 0; i < g->getVerticeCount(); i++) {
         v[i]->setPai(NULL);
         v[i]->setCor(Qt::white);
-        v[i]->setD(-1);
+        v[i]->setD(INF);
     }
     v[initial]->setD(0);
 
