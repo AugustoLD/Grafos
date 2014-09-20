@@ -36,6 +36,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->algorithmComboBox->addItem("Kruskal");
     this->ui->algorithmComboBox->addItem("Ford-Fulkerson");
 
+    isFordFulkerson = false;
+
     QMainWindow::paintEvent(new QPaintEvent(this->geometry()));
     this->grafo=this->tmp=NULL;
     connect( this, SIGNAL (mostrar(Grafo * )), this, SLOT(mostrarGrafo(Grafo*)) );

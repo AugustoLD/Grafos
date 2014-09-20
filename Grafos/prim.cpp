@@ -30,6 +30,29 @@ void Prim::prim() {
         emit colorChanged();
         sleep(1);
     }
+    for(int i = 0; i < n; i++) {
+        V[i]->setCor(Qt::white);
+        if(V[i]->getPai() != NULL) {
+            qDebug() << V[i]->getNome() << ' ' << V[i]->getPai()->getNome();
+            Vertice *v_aux = V[i]->getPai();
+            Aresta *a_aux = grafo->getAresta();
+            while(a_aux != NULL) {
+                if((a_aux->getIdV1() == V[i]->getId() && a_aux->getIdV2() == v_aux->getId()) ||
+                   (a_aux->getIdV2() == V[i]->getId() && a_aux->getIdV1() == v_aux->getId())) {
+                    a_aux->setColor(Qt::red);
+                }
+                a_aux = a_aux->getNext();
+            }
+        }
+    }
+    Aresta *a_aux = grafo->getAresta();
+    while(a_aux != NULL) {
+        if(a_aux->getColor() != Qt::red) {
+            a_aux->setColor(Qt::transparent);
+        }
+        a_aux = a_aux->getNext();
+    }
+    emit colorChanged();
 }
 
 Vertice* Prim::popMenor() {
