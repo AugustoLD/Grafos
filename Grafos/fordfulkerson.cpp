@@ -19,6 +19,7 @@ void FordFulkerson::fordFulkerson() {
     emit colorChanged();
 
     findPath(pathList, V, V[source]);
+
 }
 
 void FordFulkerson::findPath(QList<Aresta*> pathList, Vertice **V, Vertice *currentVertice) {
@@ -56,6 +57,7 @@ void FordFulkerson::calculateFlow(QList<Aresta*> pathList) {
             menor = pathList.at(i)->getCapacity();
         }
     }
+    maxFlow += menor;
     qDebug() << menor;
     for(int i = 0; i < pathList.size(); i++) {
         pathList.at(i)->decreaseCapacity(menor);
@@ -64,4 +66,8 @@ void FordFulkerson::calculateFlow(QList<Aresta*> pathList) {
     }
     emit colorChanged();
     sleep(1);
+}
+
+int FordFulkerson::getMaxFlow() {
+    return this->maxFlow;
 }

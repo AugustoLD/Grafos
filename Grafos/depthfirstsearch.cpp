@@ -12,7 +12,7 @@ void DepthFirstSearch::dfs() {
     }
     emit colorChanged();
     tempo = 0;
-    for(int i = initial; i < n; i++) {
+    for(int i = 0; i < n; i++) {
         if(V[i]->getCor() == Qt::white) {
             visit(V[i]);
         }

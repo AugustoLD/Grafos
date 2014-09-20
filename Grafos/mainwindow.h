@@ -50,6 +50,7 @@ private:
     Kruskal *kruskal;
     FordFulkerson *fordFulkerson;
     bool isFordFulkerson;
+    bool isDijkstra;
 
 protected:
     virtual void paintEvent(QPaintEvent *);

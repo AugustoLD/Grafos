@@ -32,7 +32,7 @@ void Topologica::visit(Vertice *v) {
     }
     v->setTo(tempo++);
     v->setCor(Qt::black);
-    lista.append(v);
+    lista.push_front(v);
     emit colorChanged();
     sleep(1);
 }

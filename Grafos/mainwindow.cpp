@@ -37,6 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->algorithmComboBox->addItem("Ford-Fulkerson");
 
     isFordFulkerson = false;
+    isDijkstra = false;
 
     QMainWindow::paintEvent(new QPaintEvent(this->geometry()));
     this->grafo=this->tmp=NULL;
@@ -86,7 +87,11 @@ void MainWindow::paintEvent(QPaintEvent *) {
         painter.setPen((v->getCor()==Qt::black)? Qt::white : Qt::black);
         painter.drawEllipse( v->getX()-20,  v->getY()-20, 40, 40 );
         QRect r1 ( v->getX()-4,  v->getY()-8, v->getX()+4,  v->getY()+8 );
-        painter.drawText( r1, v->getNome() );
+        if(isDijkstra) {
+            painter.drawText( r1, v->getNome()+'['+QString::number(v->getD())+']');
+        } else {
+            painter.drawText( r1, v->getNome() );
+        }
     }
 }
 
@@ -176,6 +181,7 @@ void MainWindow::init() {
         a = a->getNext();
     }
     isFordFulkerson = false;
+    isDijkstra = false;
 
     switch (selectedAlgorithm) {
     case 0:
@@ -210,6 +216,7 @@ void MainWindow::init() {
         dijkstra = new Dijkstra();
         dijkstra->setParameters(grafo, ui->cbOrigem->currentIndex());
         dijkstra->start();
+        isDijkstra = true;
         connect(dijkstra, SIGNAL(colorChanged()), SLOT(paint()));
         connect(dijkstra, SIGNAL(finished()), SLOT(freeButtons()));
         break;
@@ -249,6 +256,9 @@ void MainWindow::showPath() {
         break;
     case 4:
         this->ui->textEdit->setText(Path::getPath(grafo, this->ui->cbFinal->currentIndex()));
+        break;
+    case 6:
+        this->ui->textEdit->setText("Maximum Flow: " + QString::number(fordFulkerson->getMaxFlow()));
         break;
     }
 }

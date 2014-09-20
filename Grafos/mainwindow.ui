@@ -52,7 +52,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Mostrar Caminho</string>
+     <string>Show Path</string>
     </property>
    </widget>
    <widget class="QComboBox" name="algorithmComboBox">
@@ -159,12 +159,12 @@
      <x>0</x>
      <y>0</y>
      <width>678</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGrafos">
     <property name="title">
-     <string>Grafos</string>
+     <string>Graph</string>
     </property>
     <addaction name="actionLoad"/>
    </widget>

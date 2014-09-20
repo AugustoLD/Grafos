@@ -14,15 +14,19 @@ public:
         this->g = g;
         this->source = source;
         this->target = target;
+        maxFlow = 0;
     }
 
     void run() {
         fordFulkerson();
     }
 
+    int getMaxFlow();
+
 private:
     int source;
     int target;
+    int maxFlow;
 
     Grafo *g;
     void fordFulkerson();
