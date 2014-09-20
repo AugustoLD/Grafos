@@ -9,12 +9,21 @@ meias,300,100
 sapatos,300,200
 relógio,400,150
 (cuecas,calças,1)
+(calças,cuecas,1)
 (cuecas,sapatos,1)
+(sapatos,cuecas,1)
 (calças,cinto,1)
+(cinto,calças,1)
 (calças,sapatos,1)
+(sapatos,calças,1)
 (camisa,cinto,1)
+(cinto,camisa,1)
 (camisa,gravata,1)
+(gravata,camisa,1)
+(paletó,cinto,1)
 (cinto,paletó,1)
 (gravata,paletó,1)
+(paletó,gravata,1)
 (meias,sapatos,1)
+(sapatos,meias,1)
 
